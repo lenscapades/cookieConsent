@@ -167,7 +167,10 @@ class CookieConsent {
 		$plugin_generic = new \Lcc\Generic\Hooks( $this->get_plugin_name(), $this->get_version() );
 
 		$this->loader->add_action( 'init', $plugin_generic, 'init_cookie' );
+		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_generic, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_generic, 'enqueue_scripts' );
+		$this->loader->add_action( 'wp_ajax_consent_dialog', $plugin_generic, 'consent_dialog' );
+		$this->loader->add_action( 'wp_ajax_nopriv_consent_dialog', $plugin_generic, 'consent_dialog' );
 
 	}
 

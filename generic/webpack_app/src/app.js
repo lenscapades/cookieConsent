@@ -41,6 +41,35 @@ class CookieConsent {
       this.doNotTrack = data[8];
     }
   }
+
+  openHorizontalTabContent(evt, tabName) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(tabName).style.display = "block";
+    evt.currentTarget.className += " active";
+}
+
+openCity(evt, cityName) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("verticaltabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("verticaltablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(cityName).style.display = "block";
+    evt.currentTarget.className += " active";
+}
+
 }
 
 document.addEventListener("DOMContentLoaded", function(event){
@@ -51,7 +80,44 @@ document.addEventListener("DOMContentLoaded", function(event){
 
   consent.getCookieData();
   
-  console.log(consent.id);
+  console.log(consent.hasResponse);
   console.log(lang);
+
+  return fetch(ajax_params.ajax_url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8'
+    },
+    body: 'action=consent_dialog&language=' + lang
+  }).then(function(res) {
+    return res.text();
+  }).then(function(html) {
+    document.body.innerHTML += html;
+
+    document.getElementById("dialogTab1").addEventListener("click", function (event){
+      consent.openHorizontalTabContent(event, 'cookieDescription') 
+    });
+    document.getElementById("dialogTab2").addEventListener("click", function (event){
+      consent.openHorizontalTabContent(event, 'generalCookieIntroduction') 
+    });
+
+    document.getElementById("dialogVTab1").addEventListener("click", function (event) {
+      consent.openCity(event, 'Necessary') 
+    });
+    document.getElementById("dialogVTab2").addEventListener("click", function (event) {
+      consent.openCity(event, 'Preferences') 
+    });
+    document.getElementById("dialogVTab3").addEventListener("click", function (event) {
+      consent.openCity(event, 'Statistics') 
+    });
+    document.getElementById("dialogVTab4").addEventListener("click", function (event) {
+      consent.openCity(event, 'Marketing') 
+    });
+
+    document.getElementById("dialogVTab1").click();
+
+    document.getElementById("dialogTab1").click();
+
+  });
   
 });

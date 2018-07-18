@@ -1,28 +1,36 @@
 <?php
 
 /**
- * The admin and frontend functionality of the plugin.
+ * The generic functionality of the plugin.
  *
  * @link       https://lenscapades.com
  * @since      1.0.0
  *
- * @package    Lenscapades_cookie_consent
- * @subpackage Lenscapades_cookie_consent/public
+ * @package    Lcc
+ * @subpackage Lcc/generic
  */
 
 namespace Lcc\Generic;
 
 /**
- * The admin and frontend functionality of the plugin.
+ * The generic functionality of the plugin.
  *
- * Defines the plugin name, version, and two examples hooks for how to
- * enqueue the public-facing stylesheet and JavaScript.
+ * Defines the plugin name, version and some function to hook on.
  *
- * @package    Lenscapades_cookie_consent
- * @subpackage Lenscapades_cookie_consent/public
+ * @package    Lcc
+ * @subpackage Lcc/generic
  * @author     Marcus Hogh <hogh@lenscapades.com>
  */
 class Hooks {
+	/**
+	 * An instance of this class should be passed to the run() function
+	 * defined in Lcc\Includes\Loader as all of the hooks are defined
+	 * in that particular class.
+	 *
+	 * The Lcc\Includes\Loader will then create the relationship
+	 * between the defined hooks and the functions defined in this
+	 * class.
+	 */
 
 	/**
 	 * The ID of this plugin.
@@ -34,7 +42,7 @@ class Hooks {
 	private $plugin_name;
 
 	/**
-	 * The version of this plugin.
+	 * The current version of this plugin.
 	 *
 	 * @since    1.0.0
 	 * @access   private
@@ -47,7 +55,7 @@ class Hooks {
 	 *
 	 * @since    1.0.0
 	 * @param      string    $plugin_name       The name of the plugin.
-	 * @param      string    $version    The version of this plugin.
+	 * @param      string    $version    The current version of this plugin.
 	 */
 	public function __construct( $plugin_name, $version ) {
 
@@ -57,54 +65,57 @@ class Hooks {
 	}
 
 	/**
-	 * Register the stylesheets for the generic side of the site.
+	 * Register the stylesheets for cookie consent dialog.
+	 *
+	 * Function to hook on 'wp_enqueue_scripts'.
 	 *
 	 * @since    1.0.0
 	 */
 	public function enqueue_styles() {
 
-		/**
-		 * This function is provided for demonstration purposes only.
-		 *
-		 * An instance of this class should be passed to the run() function
-		 * defined in Lenscapades_cookie_consent_Loader as all of the hooks are defined
-		 * in that particular class.
-		 *
-		 * The Lenscapades_cookie_consent_Loader will then create the relationship
-		 * between the defined hooks and the functions defined in this
-		 * class.
-		 */
-
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/lenscapades_cookie_consent-generic.css', array(), $this->version, 'all' );
+		wp_enqueue_style( 
+			$this->plugin_name . '-generic', 
+			plugin_dir_url( __FILE__ ) . 'css/cookie_consent.css', 
+			array(), 
+			$this->version, 
+			'all' 
+		);
 
 	}
 
 	/**
-	 * Register the JavaScript for the generic side of the site.
+	 * Register the JavaScript for cookie consent dialog.
 	 *
+	 * Function to hook on 'wp_enqueue_scripts'.
+	 * 
 	 * @since    1.0.0
 	 */
 	public function enqueue_scripts() {
 
-		/**
-		 * This function is provided for demonstration purposes only.
-		 *
-		 * An instance of this class should be passed to the run() function
-		 * defined in Lenscapades_cookie_consent_Loader as all of the hooks are defined
-		 * in that particular class.
-		 *
-		 * The Lenscapades_cookie_consent_Loader will then create the relationship
-		 * between the defined hooks and the functions defined in this
-		 * class.
-		 */
-
-		wp_enqueue_script( $this->plugin_name . '-generic', plugin_dir_url( __FILE__ ) . 'js/cookie_consent.js', array(), $this->version, true );
-
+		wp_register_script( 
+			$this->plugin_name . '-generic', 
+			plugin_dir_url( __FILE__ ) . 'js/cookie_consent.js', 
+			array(), 
+			$this->version, 
+			true 
+		);
+		wp_localize_script( 
+			$this->plugin_name . '-generic', 
+			'ajax_params', 
+			array( 'ajax_url' => admin_url( 'admin-ajax.php' ) ) 
+		);
+		wp_enqueue_script( 			
+			$this->plugin_name . '-generic' 
+		);
 	}
 
 	/**
-	 * ...
+	 * Initialize consent cookie.
 	 *
+	 * Function to hook on 'init'.
+	 * 
+	 * Set a default consent cookie if no consent cookie is set.
+	 * 
 	 * @since    1.0.0
 	 */
 	public function init_cookie() {
@@ -120,4 +131,15 @@ class Hooks {
 
 	}
 
+	public function consent_dialog() {
+
+		$declaration = new Includes\Declaration();
+
+		$declaration->get();
+		
+		require_once( plugin_dir_path( __FILE__ ) . 'partials/consent_dialog-display.php');
+		wp_die();
+	}
+
+	
 }

@@ -1,0 +1,186 @@
+{
+	"de" : [
+		{
+			"name" : "jl_cookie_consent",
+			"provider" : "johanenlies.com",
+			"purpose" : "Speichert den Zustimmungsstatus des Benutzers für Cookies auf der aktuellen Domäne.",
+			"expiry" : "1 Jahr",
+			"type" : "HTTP Cookie",
+			"class" : "essential"
+		},
+		{
+			"name" : "wc_cart_hash_ #",
+			"provider" : "johanenlies.com",
+			"purpose" : "Speicherung von Daten, die dazu dienen, den Warenkorb des Benutzers während des Besuches der Webseite wiederherzustellen.",
+			"expiry" : "Session",
+			"type" : "HTLM Local Storage",
+			"class" : "essential"
+		},
+		{
+			"name" : "wc_fragments_ #",
+			"provider" : "johanenlies.com",
+			"purpose" : "Speicherung von Daten, die dazu dienen, die Funktion des Warenkorbs zu gewährleisten.",
+			"expiry" : "Session",
+			"type" : "HTLM Local Storage",
+			"class" : "essential"
+		},
+		{
+			"name" : "yith_wcwl_products",
+			"provider" : "johanenlies.com",
+			"purpose" : "Wird benötigt, um Produkte zur Wunschliste hinzuzufügen, abzuspeichern und anzuzeigen.",
+			"expiry" : "29 Tage",
+			"type" : "HTTP Cookie",
+			"class" : "functional"
+		},
+		{
+			"name" : "pll_language",
+			"provider" : "johanenlies.com",
+			"purpose" : "Speichert die vom Benutzer ausgewählte Sprachversion einer Webseite.",
+			"expiry" : "1 Jahr",
+			"type" : "HTTP Cookie",
+			"class" : "functional"
+		},
+		{
+			"name" : "jl_newsletter",
+			"provider" : "johanenlies.com",
+			"purpose" : "Speichert das Anzeigedatum des Newsletter-Popups.",
+			"expiry" : "1 Jahr",
+			"type" : "HTTP Cookie",
+			"class" : "functional"
+		},
+		{
+			"name" : "@@History/@@scroll|#",
+			"provider" : "johanenlies.com",
+			"purpose" : "Speichert Scroll-Position, Zoom-Level etc. of embedded HTML5 elements.",
+			"expiry" : "Session",
+			"type" : "HTLM Local Storage",
+			"class" : "functional"
+			
+		},
+		{
+			"name" : "_ga",
+			"provider" : "johanenlies.com",
+			"purpose" : "Registriert eine eindeutige ID, die verwendet wird, um statistische Daten dazu, wie der Besucher die Website nutzt, zu generieren.",
+			"expiry" : "2 Jahre",
+			"type" : "HTTP Cookie",
+			"class" : "analytical"
+	
+		},
+		{
+			"name" : "_gat",
+			"provider" : "johanenlies.com",
+			"purpose" : "Wird von Google Analytics verwendet, um die Anforderungsrate einzuschränken.",
+			"expiry" : "Session",
+			"type" : "HTTP Cookie",
+			"class" : "analytical"
+		},
+		{
+			"name" : "_gid",
+			"provider" : "johanenlies.com",
+			"purpose" : "Registriert eine eindeutige ID, die verwendet wird, um statistische Daten dazu, wie der Besucher die Website nutzt, zu generieren.",
+			"expiry" : "Session",
+			"type" : "HTTP Cookie",
+			"class" : "analytical"
+		},
+		{
+			"name" : "collect",
+			"provider" : "google-analytics.com",
+			"purpose" : "Wird zum Senden von Daten an Google Analytics über das Gerät und das Verhalten des Besuchers verwendet. Verfolgt den Besucher über Geräte und Marketingkanäle hinweg.",
+			"expiry" : "Session",
+			"type" : "Pixel Tracker",
+			"class" : "3rd-party"
+		}
+	],
+	"en" : [
+		{
+			"name" : "jl_cookie_consent",
+			"provider" : "johanenlies.com",
+			"purpose" : "Stores the user's cookie consent state for the current domain.",
+			"expiry" : "1 year",
+			"type" : "HTTP Cookie",
+			"class" : "essential"
+		},
+		{
+			"name" : "wc_cart_hash_ #",
+			"provider" : "johanenlies.com",
+			"purpose" : "Storage of data used to restore the user's shopping cart while visiting the website.",
+			"expiry" : "Session",
+			"type" : "HTLM Local Storage",
+			"class" : "essential"
+		},
+		{
+			"name" : "wc_fragments_ #",
+			"provider" : "johanenlies.com",
+			"purpose" : "Storage of data that serve to ensure the functioning of the shopping cart.",
+			"expiry" : "Session",
+			"type" : "HTLM Local Storage",
+			"class" : "essential"
+		},
+		{
+			"name" : "yith_wcwl_products",
+			"provider" : "johanenlies.com",
+			"purpose" : "Needed to add, save and display products to wishlist.",
+			"expiry" : "29 days",
+			"type" : "HTTP Cookie",
+			"class" : "functional"
+		},
+		{
+			"name" : "pll_language",
+			"provider" : "johanenlies.com",
+			"purpose" : "Saves the language version of a web page selected by the user.",
+			"expiry" : "1 year",
+			"type" : "HTTP Cookie",
+			"class" : "functional"
+		},
+		{
+			"name" : "jl_newsletter",
+			"provider" : "johanenlies.com",
+			"purpose" : "Saves the display date of the newsletter pop-up.",
+			"expiry" : "1 year",
+			"type" : "HTTP Cookie",
+			"class" : "functional"
+		},
+		{
+			"name" : "@@History/@@scroll|#",
+			"provider" : "johanenlies.com",
+			"purpose" : "Saves scroll position, zoom level etc. of embedded HTML5 elements.",
+			"expiry" : "Session",
+			"type" : "HTLM Local Storage",
+			"class" : "functional"
+			
+		},
+		{
+			"name" : "_ga",
+			"provider" : "johanenlies.com",
+			"purpose" : "Registers a unique ID that is used to generate statistical data on how the visitor uses the website.",
+			"expiry" : "2 years",
+			"type" : "HTTP Cookie",
+			"class" : "analytical"
+	
+		},
+		{
+			"name" : "_gat",
+			"provider" : "johanenlies.com",
+			"purpose" : "Used by Google Analytics to throttle request rate.",
+			"expiry" : "Session",
+			"type" : "HTTP Cookie",
+			"class" : "analytical"
+		},
+		{
+			"name" : "_gid",
+			"provider" : "johanenlies.com",
+			"purpose" : "Registers a unique ID that is used to generate statistical data on how the visitor uses the website.",
+			"expiry" : "Session",
+			"type" : "HTTP Cookie",
+			"class" : "analytical"
+		},
+		{
+			"name" : "collect",
+			"provider" : "google-analytics.com",
+			"purpose" : "Used to send data to Google Analytics about the visitor's device and behaviour. Tracks the visitor across devices and marketing channels.",
+			"expiry" : "Session",
+			"type" : "Pixel Tracker",
+			"class" : "3rd-party"
+		}
+	]
+}
