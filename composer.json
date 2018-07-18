@@ -1,0 +1,15 @@
+{
+	"name": "pressware/acme-plugins",
+	"description": "A demo plugin",
+	"autoload": {
+		"psr-4": {
+			"Lcc\\": "",
+			"Lcc\\Includes\\": "./includes",
+			"Lcc\\Admin\\": "./admin",
+			"Lcc\\Frontend\\": "./public",
+			"Lcc\\Generic\\": "./generic",
+			"Lcc\\Generic\\Includes\\": "./generic/includes"
+
+		}
+	}
+}

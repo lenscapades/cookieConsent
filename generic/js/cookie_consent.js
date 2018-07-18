@@ -1,0 +1,1 @@
+../webpack_app/build/app.bundle.js
