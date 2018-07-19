@@ -1,12 +1,12 @@
 {
 	"de" : {
-		"cookie-domains" : "Ihre Einwilligung trifft auf die folgenden Domains zu:",
-		"consent-state" : "Ihr aktueller Einwillingungszustand:",
-		"declatation-updated" : "Die Cookie-Erklärung wurde das letzte Mal am [date] aktualisiert." 
+		"cookieDomains" : "Ihre Einwilligung trifft auf die folgenden Domains zu:",
+		"consentState" : "Ihr aktueller Einwillingungszustand:",
+		"declatationUpdated" : "Die Cookie-Erklärung wurde das letzte Mal am [date] aktualisiert." 
 	},
 	"en" : {
-		"cookie-domains" : "Your consent applies to the following domains:",
-		"consent-state" : "Your current state:",
-		"declatation-updated" : "Cookie declaration last updated on [date]." 
+		"cookieDomains" : "Your consent applies to the following domains:",
+		"consentState" : "Your current state:",
+		"declatationUpdated" : "Cookie declaration last updated on [date]." 
 	}
 }

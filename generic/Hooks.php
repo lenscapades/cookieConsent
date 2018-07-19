@@ -136,7 +136,7 @@ class Hooks {
 		$declaration = new Includes\Declaration();
 
 		$declaration->get();
-		
+
 		require_once( plugin_dir_path( __FILE__ ) . 'partials/consent_dialog-display.php');
 		wp_die();
 	}

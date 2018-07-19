@@ -11,52 +11,62 @@
  * @package    Lenscapades_cookie_consent
  * @subpackage Lenscapades_cookie_consent/public/partials
  */
+
+$content = $declaration->content;
+
+$necessary = $declaration->cookiesByClass['essential'];
+$preferences = $declaration->cookiesByClass['functional'];
+$statistics = $declaration->cookiesByClass['analytical'];
+$marketing = $declaration->cookiesByClass['3rd-party'];
 ?>
 
-<h1><?php echo $declaration->content['dialog-heading']; ?></h1>
-<p><?php echo $declaration->content['dialog-body-text']; ?></p>
+<h1><?php echo $content->dialogHeading; ?></h1>
+<p><?php echo $content->dialogBodyText; ?></p>
 
 <div class="tab">
-  <button class="tablinks" id="dialogTab1"><?php echo $declaration->content['cookie-declaration-title']; ?></button>
-  <button class="tablinks" id="dialogTab2"><?php echo $declaration->content['general-cookie-introduction-title']; ?></button>
+  <button class="tablinks" id="dialogTab1"><?php echo $content->cookieDeclarationTitle; ?></button>
+  <button class="tablinks" id="dialogTab2"><?php echo $content->generalCookieIntroductionTitle; ?></button>
 </div>
 
 <div id="cookieDescription" class="tabcontent">
 
 <div class="verticaltab">
   <button class="verticaltablinks" id="dialogVTab1">
-    <?php echo $declaration->content['necessary-cookies-category-title']; ?>
+    <?php echo $content->necessaryCookiesCategoryTitle; ?>
   </button>
   <button class="verticaltablinks" id="dialogVTab2">
-    <?php echo $declaration->content['preferences-cookies-category-title']; ?>
+    <?php echo $content->preferencesCookiesCategoryTitle; ?>
   </button>
   <button class="verticaltablinks" id="dialogVTab3">
-    <?php echo $declaration->content['statistics-cookies-category-title']; ?>
+    <?php echo $content->statisticsCookiesCategoryTitle; ?>
   </button>
   <button class="verticaltablinks" id="dialogVTab4">
-    <?php echo $declaration->content['marketing-cookies-category-title']; ?>
+    <?php echo $content->marketingCookiesCategoryTitle; ?>
   </button>
 </div>
 
 <div id="Necessary" class="verticaltabcontent">
-  <p><?php echo $declaration->content['necessary-cookies-introduction']; ?></p>
-  <p><?php echo $declaration->cookies_by_class['essential']; ?></p>
+  <p><?php echo $content->necessaryCookiesIntroduction; ?></p>
+  <p><?php echo $necessary; ?></p>
 </div>
 
 <div id="Preferences" class="verticaltabcontent">
-  <p><?php echo $declaration->content['preferences-cookies-introduction']; ?></p>
+  <p><?php echo $content->preferencesCookiesIntroduction; ?></p>
+  <p><?php echo $preferences; ?></p>
 </div>
 
 <div id="Statistics" class="verticaltabcontent">
-  <p><?php echo $declaration->content['statistics-cookies-introduction']; ?></p>
+  <p><?php echo $content->statisticsCookiesIntroduction; ?></p>
+  <p><?php echo $statistics; ?></p>
 </div>
 
 <div id="Marketing" class="verticaltabcontent">
-  <p><?php echo $declaration->content['marketing-cookies-introduction']; ?></p>
+  <p><?php echo $content->marketingCookiesIntroduction; ?></p>
+  <p><?php echo $marketing; ?></p>
 </div>
 
 </div>
 
 <div id="generalCookieIntroduction" class="tabcontent">
-  <p><?php echo $declaration->content['general-cookie-introduction']; ?></p>
+  <p><?php echo $content->generalCookieIntroduction; ?></p>
 </div>
