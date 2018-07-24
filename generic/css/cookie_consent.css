@@ -1,5 +1,79 @@
 * {box-sizing: border-box}
-body {font-family: Arial;}
+
+#LenscapadesCookieDialog {
+    display: block;
+    position:fixed;
+    left:0;
+    bottom:0;
+    width:100%;
+    height: auto;
+    overflow-y:auto;
+    max-height:100%;
+    z-index: 1;
+    background-color: #fff;
+}
+
+#LenscapadesCookieDialog section[role=banner] {
+    font-size: 1em;
+}
+#LenscapadesCookieDialog section[role=banner] div {
+    position:relative;
+    top:0;
+    left:0;
+    background-color: #efefef;
+}
+#LenscapadesCookieDialog section[role=banner] div > h1 {
+    position:relative;
+    top:0;
+    left:0;
+    width: 66.66%;
+    font-size: 120%;
+    margin:0;
+    padding: 3% 2%;
+    line-height: 1em;
+    text-align: center;
+
+}
+#LenscapadesCookieDialog section[role=banner] div > div {
+    position:absolute;
+    top:0;
+    right:0;
+    width: 33.33%;
+    height:100%;
+    font-size: 110%;
+    margin:0;
+    padding:0;
+    line-height: 1em;
+    margin-left:66.66%;
+}
+
+#LenscapadesCookieDialog section[role=banner] .button {
+    background-color: #566eda;
+    height:100%;
+    border: none;
+    color: white;
+    width: 100%;
+    padding: 2% 33.33%;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 100%;
+    margin: 0;
+    cursor: pointer;
+}
+
+#LenscapadesCookieDialog section[role=body] {
+    clear: both;
+}
+
+#LenscapadesCookieDialogDetails {
+    display: none;
+}
+
+
+
+
+
 
 /* Style horizontal tab */
 .tab {
@@ -10,7 +84,8 @@ body {font-family: Arial;}
 }
 
 /* Style the buttons inside the tab */
-.tab button {
+.tab button,
+.drawer button {
   background-color: inherit;
   float: left;
   border: none;
@@ -22,12 +97,14 @@ body {font-family: Arial;}
 }
 
 /* Change background color of buttons on hover */
-.tab button:hover {
+.tab button:hover,
+.drawer button:hover {
     background-color: #ddd;
 }
 
 /* Create an active/current tablink class */
-.tab button.active {
+.tab button.active,
+.drawer button.active {
     background-color: #ccc;
 }
 
@@ -91,4 +168,199 @@ div#generalCookieIntroduction {
 	padding: 6px 0px;
 	margin: 0;
   border: 1px solid #ccc;
+}
+
+
+
+.drawer {
+    width: 100%;
+    overflow: hidden;
+    border: 1px solid #ccc;
+    border-bottom: none;
+    background-color: #f1f1f1;
+}
+
+.drawer_last {
+    border: 1px solid #ccc;
+    border-top: none;
+}
+
+/* Switch layout
+ */
+ .switch > div:first-of-type {
+     position:relative;
+     top:0;
+     left:0;
+     width:33%;
+     margin:20px 0;
+ }
+ 
+ .switch > input {
+    display: none;
+  }
+  .switch-btn {
+    width: 80px;
+    height: 40px;
+    background: #e5e5e5;
+    position: absolute;
+    top:0;
+    right:0;
+    border-radius: 20px;
+    box-shadow: inset 0 3px 10px rgba(0,0,0,.3);
+    margin-right:20px;
+  }
+  .switch-btn:before {
+    content: '';
+    position: absolute;
+    height: 36px;
+    width: 36px;
+    background: linear-gradient(#fff,#f2f2f2);
+    left: 2px;
+    top: 2px;
+    border-radius: 50%;
+    box-shadow: 0 8px 6px -4px rgba(0,0,0,.25);
+    transition: all 150ms ease-out;
+  }
+  input[type=checkbox]:checked + .switch-btn:before {
+    left: 42px;
+  }
+  input[type=checkbox]:checked + .switch-btn {
+    background: rgb(55,185,55);
+  }
+  
+/* Media queries
+ */
+
+#LenscapadesCookieDialog section[role=body] {
+    display: block;
+}
+
+#LenscapadesCookieDialog section[role=body] p {
+    margin: 10px 20px;
+    padding: 0;
+    font-size:90%;
+
+}
+
+#LenscapadesCookieDialogBodyLevelDetailsButton {
+    display: none;
+}
+
+.drawer {
+    display: block;
+}
+
+.tab {
+    display: none;
+}
+
+label.switch {
+    position:relative;
+    top:0;
+    left:0;
+    display: block;
+    margin: 0 0 0 20px;
+    padding: 0 20px 0 0;
+    border-bottom: 1px solid blue;
+}
+
+@media screen and (min-width: 999px) {
+
+    #LenscapadesCookieDialog section[role=banner] div {
+        display: none;
+    }
+
+    #LenscapadesCookieDialog section[role=body] {
+        display: block;
+    }
+
+    #LenscapadesCookieDialogBodyLevelDetailsButton {
+        display: block;
+    }
+
+    .drawer {
+        display: none;
+    }
+
+    .tab {
+        display: block;
+    }
+    .switch > div:first-of-type {
+        float:none;
+        display: inline;
+    }
+
+    /* Checkbox layout */
+    .switch {
+        display: block;
+        position: relative;
+        padding-left: 35px;
+        margin-bottom: 12px;
+        cursor: pointer;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+
+    /* Hide the browser's default checkbox */
+    .switch input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+    }
+
+    /* Create a custom checkbox */
+    .switch-btn {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 25px;
+        width: 25px;
+        border-radius: 0;
+        box-shadow: none;
+        background-color: #eee;
+    }
+    .switch-btn:before {
+        visibility: hidden;
+    }
+    /* On mouse-over, add a grey background color */
+    .switch:hover input ~ .switch-btn {
+        background-color: #ccc;
+    }
+
+    /* When the checkbox is checked, add a blue background */
+    .switch input:checked ~ .switch-btn {
+        background-color: #2196F3;
+    }
+
+    /* Create the checkmark/indicator (hidden when not checked) */
+    .switch-btn:after {
+        content: "";
+        position: absolute;
+        display: none;
+    }
+
+    /* Show the checkmark when checked */
+    .switch input:checked ~ .switch-btn:after {
+        display: block;
+    }
+
+    /* Style the checkmark/indicator */
+    .switch .switch-btn:after {
+        left: 9px;
+        top: 5px;
+        width: 5px;
+        height: 10px;
+        border: solid white;
+        border-width: 0 3px 3px 0;
+        -webkit-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+        transform: rotate(45deg);
+    }
+
+    label.switch {
+        display: inline;
+    }
+    
 }

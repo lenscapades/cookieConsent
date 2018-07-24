@@ -20,12 +20,64 @@ $statistics = $declaration->cookiesByClass['analytical'];
 $marketing = $declaration->cookiesByClass['3rd-party'];
 ?>
 
-<h1><?php echo $content->dialogHeading; ?></h1>
-<p><?php echo $content->dialogBodyText; ?></p>
+<section role="banner">
+  <div>
+  <h1><?php echo $content->dialogHeading; ?></h1>
+    <div>
+      <button class="button">Ok</button>
+    </div>
+  </div>
+</section>
+
+<section role="body">
+  <p><?php echo $content->dialogBodyText; ?></p>
+</section>
+
+    <label class="switch">
+      <div>
+        <?php echo $content->necessaryCookiesCategoryTitle; ?>
+      </div>
+      <input type="checkbox">
+      <div class="switch-btn"></div>
+    </label>
+
+    <label class="switch">
+      <div>
+        <?php echo $content->preferencesCookiesCategoryTitle; ?>
+      </div>
+      <input type="checkbox">
+      <div class="switch-btn"></div>
+    </label>
+
+<label class="switch">
+  <div>
+    <?php echo $content->statisticsCookiesCategoryTitle; ?>
+  </div>
+  <input type="checkbox">
+  <div class="switch-btn"></div>
+</label>
+
+<label class="switch">
+  <div>
+    <?php echo $content->marketingCookiesCategoryTitle; ?>
+  </div>
+  <input type="checkbox">
+  <div class="switch-btn"></div>
+</label>
+
+<div style="clear:both">
+<button id="LenscapadesCookieDialogBodyLevelDetailsButton">Details</button>
+</div>
+
+<div id="LenscapadesCookieDialogDetails">
 
 <div class="tab">
-  <button class="tablinks" id="dialogTab1"><?php echo $content->cookieDeclarationTitle; ?></button>
-  <button class="tablinks" id="dialogTab2"><?php echo $content->generalCookieIntroductionTitle; ?></button>
+  <button data-rel="cookieDescription" class="tablinks" id="dialogTab1"><?php echo $content->cookieDeclarationTitle; ?></button>
+  <button data-rel="generalCookieIntroduction" class="tablinks" id="dialogTab2"><?php echo $content->generalCookieIntroductionTitle; ?></button>
+</div>
+
+<div class="drawer">
+  <button data-rel="cookieDescription" class="tablinks" id="dialogDrawer1"><?php echo $content->cookieDeclarationTitle; ?></button>
 </div>
 
 <div id="cookieDescription" class="tabcontent">
@@ -67,6 +119,12 @@ $marketing = $declaration->cookiesByClass['3rd-party'];
 
 </div>
 
+<div class="drawer drawer_last">
+  <button data-rel="generalCookieIntroduction" class="tablinks" id="dialogDrawer2"><?php echo $content->generalCookieIntroductionTitle; ?></button>
+</div>
+
 <div id="generalCookieIntroduction" class="tabcontent">
   <p><?php echo $content->generalCookieIntroduction; ?></p>
 </div>
+
+</div> <!-- details -->

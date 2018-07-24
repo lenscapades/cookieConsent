@@ -1,26 +1,26 @@
 class CookieConsent {
 
-  cname = 'CookieConsent';
+    cname = 'CookieConsent';
 
-  constructor() {
+    constructor() {
     
-  }
-
-  getCookie() {
-    var name = this.cname + "=";
-    var decodedCookie = decodeURIComponent(document.cookie);
-    var ca = decodedCookie.split(';');
-    for(var i = 0; i <ca.length; i++) {
-        var c = ca[i];
-        while (c.charAt(0) == ' ') {
-            c = c.substring(1);
-        }
-        if (c.indexOf(name) == 0) {
-            return c.substring(name.length, c.length);
-        }
     }
-    return "";
-  }
+
+    getCookie() {
+        var name = this.cname + "=";
+        var decodedCookie = decodeURIComponent(document.cookie);
+        var ca = decodedCookie.split(';');
+        for(var i = 0; i <ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0) == ' ') {
+                c = c.substring(1);
+            }
+            if (c.indexOf(name) == 0) {
+                return c.substring(name.length, c.length);
+            }
+        }
+        return "";
+    }
 
   getCookieData() {
 
@@ -42,19 +42,60 @@ class CookieConsent {
     }
   }
 
+  hasClass(element, cls) {
+    return (' ' + element.className + ' ').indexOf(' ' + cls + ' ') > -1;
+  }
+
   openHorizontalTabContent(evt, tabName) {
-    var i, tabcontent, tablinks;
+
+    let i, tabcontent, tablinks;
+    let active = false;
+    let drawer = false;
+
+    if (this.hasClass(evt.currentTarget,"active")) {
+
+        active = true;
+    }
+
+    if (this.hasClass(evt.currentTarget.parentNode,"tab") && active) {
+
+        return;
+    }
+
     tabcontent = document.getElementsByClassName("tabcontent");
     for (i = 0; i < tabcontent.length; i++) {
         tabcontent[i].style.display = "none";
     }
     tablinks = document.getElementsByClassName("tablinks");
     for (i = 0; i < tablinks.length; i++) {
-        tablinks[i].className = tablinks[i].className.replace(" active", "");
+        if (evt.currentTarget.dataset.rel == tablinks[i].dataset.rel) {
+
+            if (active) {
+
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+
+            } else {
+
+                tablinks[i].className += " active";
+            }
+
+        } else {
+
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
     }
-    document.getElementById(tabName).style.display = "block";
-    evt.currentTarget.className += " active";
-}
+
+    if (active) {
+
+        document.getElementById(tabName).style.display = "none";
+
+    } else {
+
+        document.getElementById(tabName).style.display = "block";
+    }
+
+    }
+
 
 openCity(evt, cityName) {
     var i, tabcontent, tablinks;
@@ -70,6 +111,10 @@ openCity(evt, cityName) {
     evt.currentTarget.className += " active";
 }
 
+    showCookieDialogDetails(evt,detailsId) {
+
+        document.getElementById(detailsId).style.display = "block";
+    } 
 }
 
 document.addEventListener("DOMContentLoaded", function(event){
@@ -92,12 +137,32 @@ document.addEventListener("DOMContentLoaded", function(event){
   }).then(function(res) {
     return res.text();
   }).then(function(html) {
-    document.body.innerHTML += html;
+
+    let s = document.body.lastChild;
+    let el = document.createElement('div');
+    el.setAttribute("id","LenscapadesCookieDialog");
+    el.innerHTML += html;
+    s.parentNode.insertBefore(el, s);
+
+    //document.body.innerHTML += html;
+    
+    document
+        .getElementById("LenscapadesCookieDialogBodyLevelDetailsButton")
+        .addEventListener("click", function (event){
+            consent.showCookieDialogDetails(event, 'LenscapadesCookieDialogDetails') 
+        });
 
     document.getElementById("dialogTab1").addEventListener("click", function (event){
       consent.openHorizontalTabContent(event, 'cookieDescription') 
     });
     document.getElementById("dialogTab2").addEventListener("click", function (event){
+      consent.openHorizontalTabContent(event, 'generalCookieIntroduction') 
+    });
+
+    document.getElementById("dialogDrawer1").addEventListener("click", function (event){
+      consent.openHorizontalTabContent(event, 'cookieDescription') 
+    });
+    document.getElementById("dialogDrawer2").addEventListener("click", function (event){
       consent.openHorizontalTabContent(event, 'generalCookieIntroduction') 
     });
 
@@ -116,8 +181,36 @@ document.addEventListener("DOMContentLoaded", function(event){
 
     document.getElementById("dialogVTab1").click();
 
-    document.getElementById("dialogTab1").click();
-
-  });
+    let w = window.innerWidth;
   
+    if (w>999) {
+
+        document.getElementById("dialogTab1").click();
+
+    } else {
+
+        document.getElementById("LenscapadesCookieDialogBodyLevelDetailsButton").click();
+    }
+
+    window.addEventListener("resize", function() {
+
+      let w = window.innerWidth;
+  
+      if (w>999) {
+  
+          let tablinks = document.getElementsByClassName("tablinks");
+          for (let i = 0; i < tablinks.length; i++) {
+  
+              if (consent.hasClass(tablinks[i],"active")) {
+  
+                  return;
+              }
+          }
+      
+          document.getElementById("dialogTab1").click();
+      }
+    });
+  
+  });  
+
 });
