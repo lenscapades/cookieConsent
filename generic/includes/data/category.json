@@ -1,0 +1,16 @@
+{
+	"de" : {
+		"name" : "Name",
+    "provider" : "Anbieter",
+    "purpose" : "Zweck",
+    "expiry" : "Ablauf",
+    "type" : "Typ"
+	},
+	"en" : {
+		"name" : "Name",
+    "provider" : "Provider",
+    "purpose" : "Purpose",
+    "expiry" : "Expiry",
+    "type" : "Type"
+	}
+}

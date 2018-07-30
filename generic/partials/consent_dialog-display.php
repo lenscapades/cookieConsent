@@ -13,13 +13,14 @@
  */
 
 $content = $declaration->content;
+$auto = $declaration->auto;
 
 $necessary = $declaration->cookiesByClass['essential'];
 $preferences = $declaration->cookiesByClass['functional'];
 $statistics = $declaration->cookiesByClass['analytical'];
 $marketing = $declaration->cookiesByClass['3rd-party'];
 ?>
-
+<div class="LenscapadesCookieDialogWrapper">
 <section role="banner">
   <div>
   <h1><?php echo $content->dialogHeading; ?></h1>
@@ -33,28 +34,28 @@ $marketing = $declaration->cookiesByClass['3rd-party'];
   <p><?php echo $content->dialogBodyText; ?></p>
 </section>
 
-    <label class="switch">
+    <label class="switch border">
       <div>
         <?php echo $content->necessaryCookiesCategoryTitle; ?>
       </div>
       <input type="checkbox">
-      <div class="switch-btn"></div>
+      <div class="switch-button"></div>
     </label>
 
-    <label class="switch">
+    <label class="switch border">
       <div>
         <?php echo $content->preferencesCookiesCategoryTitle; ?>
       </div>
       <input type="checkbox">
-      <div class="switch-btn"></div>
+      <div class="switch-button"></div>
     </label>
 
-<label class="switch">
+<label class="switch border">
   <div>
     <?php echo $content->statisticsCookiesCategoryTitle; ?>
   </div>
   <input type="checkbox">
-  <div class="switch-btn"></div>
+  <div class="switch-button"></div>
 </label>
 
 <label class="switch">
@@ -62,11 +63,15 @@ $marketing = $declaration->cookiesByClass['3rd-party'];
     <?php echo $content->marketingCookiesCategoryTitle; ?>
   </div>
   <input type="checkbox">
-  <div class="switch-btn"></div>
+  <div class="switch-button"></div>
 </label>
 
-<div style="clear:both">
-<button id="LenscapadesCookieDialogBodyLevelDetailsButton">Details</button>
+<div class="button-wrapper">
+<button id="LenscapadesCookieDialogBodyLevelDetailsButton"><?php echo $auto->showDetails; ?></button>
+</div>
+
+<div class="submit-button-wrapper">
+  <button>Ok</button>
 </div>
 
 <div id="LenscapadesCookieDialogDetails">
@@ -99,32 +104,33 @@ $marketing = $declaration->cookiesByClass['3rd-party'];
 
 <div id="Necessary" class="verticaltabcontent">
   <p><?php echo $content->necessaryCookiesIntroduction; ?></p>
-  <p><?php echo $necessary; ?></p>
+  <?php echo $necessary; ?>
 </div>
 
 <div id="Preferences" class="verticaltabcontent">
   <p><?php echo $content->preferencesCookiesIntroduction; ?></p>
-  <p><?php echo $preferences; ?></p>
+  <?php echo $preferences; ?>
 </div>
 
 <div id="Statistics" class="verticaltabcontent">
   <p><?php echo $content->statisticsCookiesIntroduction; ?></p>
-  <p><?php echo $statistics; ?></p>
+  <?php echo $statistics; ?>
 </div>
 
 <div id="Marketing" class="verticaltabcontent">
   <p><?php echo $content->marketingCookiesIntroduction; ?></p>
-  <p><?php echo $marketing; ?></p>
+  <?php echo $marketing; ?>
 </div>
 
 </div>
 
-<div class="drawer drawer_last">
+<div class="drawer">
   <button data-rel="generalCookieIntroduction" class="tablinks" id="dialogDrawer2"><?php echo $content->generalCookieIntroductionTitle; ?></button>
 </div>
 
 <div id="generalCookieIntroduction" class="tabcontent">
-  <p><?php echo $content->generalCookieIntroduction; ?></p>
+  <?php echo $content->generalCookieIntroduction; ?>
 </div>
 
 </div> <!-- details -->
+</div> <!-- LenscapadesCookieDialogWrapper -->

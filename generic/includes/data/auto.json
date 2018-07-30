@@ -1,10 +1,16 @@
 {
 	"de" : {
+		"showDetails" : "Details zeigen",
+		"hideDetails" : "Details ausblenden",
 		"cookieDomains" : "Ihre Einwilligung trifft auf die folgenden Domains zu:",
 		"consentState" : "Ihr aktueller Einwillingungszustand:",
+		"renewConsent" : "Ändern Sie Ihre Einwilligung",
+		"withdrawConsent" : "Widerrufen Sie Ihre Einwilligung",
 		"declatationUpdated" : "Die Cookie-Erklärung wurde das letzte Mal am [date] aktualisiert." 
 	},
 	"en" : {
+		"showDetails" : "Show details",
+		"hideDetails" : "Hide details",
 		"cookieDomains" : "Your consent applies to the following domains:",
 		"consentState" : "Your current state:",
 		"declatationUpdated" : "Cookie declaration last updated on [date]." 

@@ -94,21 +94,65 @@ class Hooks {
 
 		wp_register_script( 
 			$this->plugin_name . '-generic', 
-			plugin_dir_url( __FILE__ ) . 'js/cookie_consent.js', 
+			plugin_dir_url( __FILE__ ) . 'js/cookie_consent_loader.js', 
 			array(), 
 			$this->version, 
 			true 
 		);
 		wp_localize_script( 
 			$this->plugin_name . '-generic', 
-			'ajax_params', 
-			array( 'ajax_url' => admin_url( 'admin-ajax.php' ) ) 
+			'lenscapades_cookie_consent', 
+			array( 
+				'params' => array(
+					'ajax_url' => admin_url( 'admin-ajax.php' ),
+					'script_url' => plugin_dir_url( __FILE__ ) . 'js/cookie_consent.js',
+					'cookie_name' => LENSCAPADES_COOKIE_CONSENT_COOKIE_NAME
+				) 
+			)
 		);
 		wp_enqueue_script( 			
 			$this->plugin_name . '-generic' 
 		);
 	}
 
+	/**
+	 * Register shortcode for cookie consent dialog.
+	 *
+	 * Function to hook on 'init'.
+	 *
+	 * @since    1.0.0
+	 */
+	public function register_shortcodes() {
+
+		add_shortcode('cookie_declaration', array($this, 'cookie_declaration'));
+	}
+
+	public function cookie_declaration() {
+
+		$declaration = new Includes\Declaration();
+
+		$declaration->get();
+
+		require_once( plugin_dir_path( __FILE__ ) . 'partials/cookie_declaration-display.php');
+	
+	}
+
+	public function set_title($title) {
+
+		global $post;
+
+		if (is_a($post, 'WP_Post') && in_the_loop()
+			&& has_shortcode($post->post_content, 'cookie_declaration')) {
+
+			$declaration = new Includes\Declaration();
+
+			$declaration->get();
+
+			$title = $declaration->content->dialogHeading;
+		}
+
+		return $title;
+	}
 	/**
 	 * Initialize consent cookie.
 	 *
@@ -131,6 +175,14 @@ class Hooks {
 
 	}
 
+
+	public function set_locale($locale) {
+    
+    //$locale = 'en_US';
+    
+    return $locale;
+	}
+
 	public function consent_dialog() {
 
 		$declaration = new Includes\Declaration();
@@ -142,4 +194,5 @@ class Hooks {
 	}
 
 	
+
 }

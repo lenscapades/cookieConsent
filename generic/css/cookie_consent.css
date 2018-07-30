@@ -7,10 +7,21 @@
     bottom:0;
     width:100%;
     height: auto;
-    overflow-y:auto;
     max-height:100%;
+    overflow-y:auto;
+    z-index: 2;
+    background: #fff;
+}
+
+#LenscapadesCookieDialog:before {
+    content: "";
+    position: absolute;
+    top: -10px;
+    left: 0;
+    width: 100%;
+    height: 10px;
+    box-shadow: 0px 0px 10px rgba(0,0,0,.8);
     z-index: 1;
-    background-color: #fff;
 }
 
 #LenscapadesCookieDialog section[role=banner] {
@@ -21,13 +32,17 @@
     top:0;
     left:0;
     background-color: #efefef;
+    border-top: thin solid #b1b1b1;
+    border-bottom: thin solid #b1b1b1;
+
 }
 #LenscapadesCookieDialog section[role=banner] div > h1 {
     position:relative;
     top:0;
     left:0;
     width: 66.66%;
-    font-size: 120%;
+    font-size: 100%;
+    font-weight: normal;
     margin:0;
     padding: 3% 2%;
     line-height: 1em;
@@ -40,18 +55,19 @@
     right:0;
     width: 33.33%;
     height:100%;
-    font-size: 110%;
+    font-size: 100%;
     margin:0;
     padding:0;
     line-height: 1em;
     margin-left:66.66%;
+    border: none;
 }
 
 #LenscapadesCookieDialog section[role=banner] .button {
-    background-color: #566eda;
     height:100%;
     border: none;
     color: white;
+    background-color: #3c82d2;
     width: 100%;
     padding: 2% 33.33%;
     text-align: center;
@@ -63,7 +79,14 @@
 }
 
 #LenscapadesCookieDialog section[role=body] {
-    clear: both;
+    display: block;
+}
+
+#LenscapadesCookieDialog section[role=body] p {
+    margin: 2% 4%;
+    padding: 0;
+    font-size:90%;
+
 }
 
 #LenscapadesCookieDialogDetails {
@@ -116,9 +139,9 @@
 /* Style vertical tab */
 .verticaltab {
     float: left;
-    border: 1px solid #ccc;
+    border-right: 1px solid #b1b1b1;
     background-color: #f1f1f1;
-    width: 30%;
+    width: 40%;
     height: 300px;
 }
 
@@ -129,12 +152,13 @@
     color: black;
     padding: 14px 16px;
     width: 100%;
-    border: none;
+    border:none;
+    border-bottom: 1px solid #b1b1b1;
     outline: none;
     text-align: left;
     cursor: pointer;
     transition: 0.3s;
-    font-size: 17px;
+    font-size: 70%;
 }
 
 /* Change background color of buttons on hover */
@@ -150,57 +174,65 @@
 /* Style the tab content */
 .verticaltabcontent {
     float: left;
-    padding: 6px 12px;
-    border: 1px solid #ccc;
-    width: 70%;
+    padding:0;
+    margin:0;
+    width: 60%;
     border-left: none;
     height: 300px;
+    overflow-y: scroll;
 }
 
 #cookieDescription {
 }
 
-.tabcontent p, .tabcontent h3 {
+.tabcontent p {
 	margin: 0;
-	padding: 6px 12px;
+    padding: 1% 3%;
+    font-size: 70%;
 }
 div#generalCookieIntroduction {
-	padding: 6px 0px;
-	margin: 0;
-  border: 1px solid #ccc;
+    margin:0;
+    padding:0;
 }
 
-
+div#generalCookieIntroduction p {
+    padding:0;
+    margin: 10px 20px;
+    font-size:90%;
+}
 
 .drawer {
     width: 100%;
     overflow: hidden;
-    border: 1px solid #ccc;
-    border-bottom: none;
     background-color: #f1f1f1;
 }
 
-.drawer_last {
-    border: 1px solid #ccc;
-    border-top: none;
+.drawer button {
+    width: 100%;
+    border-top: 1px solid #b1b1b1;
+}
+
+.drawer button.active {
+    border-bottom: 1px solid #b1b1b1;
 }
 
 /* Switch layout
  */
- .switch > div:first-of-type {
-     position:relative;
-     top:0;
-     left:0;
-     width:33%;
-     margin:20px 0;
- }
+.switch > div:first-of-type {
+    position:relative;
+    top:0;
+    left:0;
+    width:33%;
+    margin:0;
+    padding:0;
+    font-size:90%;
+}
  
- .switch > input {
+.switch > input {
     display: none;
-  }
-  .switch-btn {
-    width: 80px;
-    height: 40px;
+}
+
+.switch-button {
     background: #e5e5e5;
     position: absolute;
     top:0;
@@ -208,40 +240,52 @@ div#generalCookieIntroduction {
     border-radius: 20px;
     box-shadow: inset 0 3px 10px rgba(0,0,0,.3);
     margin-right:20px;
-  }
-  .switch-btn:before {
+}
+  
+.switch-button {
+    width: 40px;
+    height: 20px;
+    margin:0 4% 0 0;
+    padding:0;
+}
+
+.switch-button:before {
     content: '';
     position: absolute;
-    height: 36px;
-    width: 36px;
     background: linear-gradient(#fff,#f2f2f2);
     left: 2px;
     top: 2px;
     border-radius: 50%;
     box-shadow: 0 8px 6px -4px rgba(0,0,0,.25);
     transition: all 150ms ease-out;
-  }
-  input[type=checkbox]:checked + .switch-btn:before {
-    left: 42px;
-  }
-  input[type=checkbox]:checked + .switch-btn {
-    background: rgb(55,185,55);
-  }
+}
   
-/* Media queries
- */
+.switch-button:before {
+    height: 16px;
+    width: 16px;
+}
 
-#LenscapadesCookieDialog section[role=body] {
+input[type=checkbox]:checked + .switch-button:before {
+    left: 22px;
+}
+  
+input[type=checkbox]:checked + .switch-button {
+    background: #4bd863;
+}
+
+label.switch {
+    position:relative;
+    top:0;
+    left:0;
     display: block;
+    margin: 1% 0 1.5% 4%;
+    padding: 0 0 0.5% 0;
+}
+label.border {
+    border-bottom: 1px solid #b1b1b1;
 }
 
-#LenscapadesCookieDialog section[role=body] p {
-    margin: 10px 20px;
-    padding: 0;
-    font-size:90%;
-
-}
-
+.button-wrapper,
 #LenscapadesCookieDialogBodyLevelDetailsButton {
     display: none;
 }
@@ -254,28 +298,186 @@ div#generalCookieIntroduction {
     display: none;
 }
 
-label.switch {
-    position:relative;
-    top:0;
-    left:0;
-    display: block;
-    margin: 0 0 0 20px;
-    padding: 0 20px 0 0;
-    border-bottom: 1px solid blue;
+
+
+#cookieDescription table,
+#cookieDescription tr,
+#cookieDescription tbody {
+    margin:0;
+    padding:0;
+}
+#cookieDescription table {
+    border-collapse: collapse;
 }
 
-@media screen and (min-width: 999px) {
+#cookieDescription thead {
+    display: none;
+}
 
+#cookieDescription tr {
+    display: block;
+}
+
+#cookieDescription td {
+    display: block;
+    width: 100%;
+    padding: 1% 4%;
+    text-align: center;
+    font-size:70%;
+    background-color: #e1e1e1;
+    border-bottom: 1px solid #fff;
+}
+
+#cookieDescription td:first-of-type {
+    background-color: #c1c1c1;
+}
+
+#cookieDescription td::before {
+    content: attr(data-header) ": ";
+    font-weight: bold;
+}
+
+/* Media queries
+ */
+
+
+@media screen and (min-width:420px) {
+    #LenscapadesCookieDialog section[role=banner] div > h1 {
+        font-size:110%;
+    }
+    #LenscapadesCookieDialog section[role=banner] .button {
+        font-size:110%;
+    }
+    .switch-button {
+        width: 60px;
+        height: 30px;
+    }
+    .switch-button:before {
+        height: 26px;
+        width: 26px;
+    }
+    input[type=checkbox]:checked + .switch-button:before {
+        left: 32px;
+    }
+    label.switch {
+        margin: 1.25% 0 1% 4%;
+        padding: 0 0 1.75% 0;
+    }
+    .verticaltab {
+        width:30%;
+    }
+    .verticaltabcontent {
+        width:70%;
+    }
+    .verticaltab button {
+        font-size: 80%;
+    }
+    .tabcontent p {
+        font-size: 80%;
+    }
+    #cookieDescription td {
+        font-size: 80%;
+    }
+}
+  
+@media screen and (min-width:720px) {
+    #LenscapadesCookieDialog section[role=banner] div > h1 {
+        font-size:120%;
+    }
+    #LenscapadesCookieDialog section[role=banner] .button {
+        font-size:120%;
+    }
+    .switch > div:first-of-type {
+        font-size: 100%;
+        height:40px;
+        padding: 1% 0;
+    }
+    .switch-button {
+        width: 80px;
+        height: 40px;
+    }
+    .switch-button:before {
+        height: 36px;
+        width: 36px;
+    }
+    input[type=checkbox]:checked + .switch-button:before {
+        left: 42px;
+    }
+    label.switch {
+        margin:1% 0 1% 4%;
+        padding:0 0 1% 0;
+    }
+    .verticaltab {
+        width:20%;
+    }
+    .verticaltabcontent {
+        width:80%;
+    }
+    .verticaltab button {
+        font-size: 90%;
+    }
+    .tabcontent p {
+        font-size: 90%;
+    }
+    #cookieDescription td {
+        font-size: 90%;
+    }
+}
+  
+
+
+
+@media screen and (min-width: 1024px) {
+
+    #LenscapadesCookieDialog {
+        margin: 0;
+        padding: 1%;
+    }
+    #LenscapadesCookieDialog:before {
+        content: "";
+        position: absolute;
+        top: -10px;
+        left: 0;
+        width: 100%;
+        height: 10px;
+        box-shadow: 0px 0px 10px rgba(0,0,0,.8);
+        z-index: 1;
+    }
     #LenscapadesCookieDialog section[role=banner] div {
+        background-color: #fff;
+    }
+    #LenscapadesCookieDialog section[role=banner] div > div {
         display: none;
+    }
+
+    #LenscapadesCookieDialog section[role=banner] div > h1 {
+        width: 100%;
+        font-size: 180%;
+        margin:0;
+        padding: 1% 0;  
+        text-align: left;  
+    }
+
+    #LenscapadesCookieDialog section[role=body] p {
+        margin: 0;
+        padding: 0 0 1% 0;
+        font-size:90%;
+    
     }
 
     #LenscapadesCookieDialog section[role=body] {
         display: block;
     }
 
+    .button-wrapper {
+        display: inline;
+    }
     #LenscapadesCookieDialogBodyLevelDetailsButton {
-        display: block;
+        display: inline-block;
+    }
+
+    .submit-button-wrapper {
+        display:inline;
     }
 
     .drawer {
@@ -288,6 +490,7 @@ label.switch {
     .switch > div:first-of-type {
         float:none;
         display: inline;
+        margin-left:35px;
     }
 
     /* Checkbox layout */
@@ -311,7 +514,7 @@ label.switch {
     }
 
     /* Create a custom checkbox */
-    .switch-btn {
+    .switch-button {
         position: absolute;
         top: 0;
         left: 0;
@@ -321,33 +524,34 @@ label.switch {
         box-shadow: none;
         background-color: #eee;
     }
-    .switch-btn:before {
+    
+    .switch-button:before {
         visibility: hidden;
     }
     /* On mouse-over, add a grey background color */
-    .switch:hover input ~ .switch-btn {
+    .switch:hover input ~ .switch-button {
         background-color: #ccc;
     }
 
     /* When the checkbox is checked, add a blue background */
-    .switch input:checked ~ .switch-btn {
+    .switch input:checked ~ .switch-button {
         background-color: #2196F3;
     }
 
     /* Create the checkmark/indicator (hidden when not checked) */
-    .switch-btn:after {
+    .switch-button:after {
         content: "";
         position: absolute;
         display: none;
     }
 
     /* Show the checkmark when checked */
-    .switch input:checked ~ .switch-btn:after {
+    .switch input:checked ~ .switch-button:after {
         display: block;
     }
 
     /* Style the checkmark/indicator */
-    .switch .switch-btn:after {
+    .switch .switch-button:after {
         left: 9px;
         top: 5px;
         width: 5px;
@@ -361,6 +565,44 @@ label.switch {
 
     label.switch {
         display: inline;
+        margin:0;
+        padding:0 1% 0 0;
+        border: none;
     }
-    
+
+    #cookieDescription table {
+        margin: 6px 12px;
+        padding:0;
+	    border: thin solid black;
+        border-collapse: collapse;
+    }
+    #cookieDescription thead {
+        display: table-header-group;
+        vertical-align: middle;
+        border-color: inherit;
+        background-color: #eee;
+    }
+
+    #cookieDescription tr {
+        display: table-row;
+        border-color: inherit;
+    }
+
+    #cookieDescription th,
+    #cookieDescription td {
+        display: table-cell;
+        width: auto;
+        vertical-align: top;
+        text-align:left;
+        border: thin dotted gray;
+	    padding: 5px;
+    }
+
+    #cookieDescription th {
+        background-color: #cc6600;
+    }
+
+    #cookieDescription td::before {
+        content: "";
+    }
 }

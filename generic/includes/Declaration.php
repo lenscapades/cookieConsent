@@ -54,7 +54,12 @@ class Declaration {
       $language 
     );
 
-    $this->cookiesByClass = $this->cookiesByClass( $this->cookies );
+    $this->category = $this->json_file_get_contents( 
+      plugin_dir_path( __FILE__ ) . 'data/category.json', 
+      $language 
+    );
+
+    $this->cookiesByClass = $this->cookiesByClass();
 
   }
   
@@ -96,31 +101,63 @@ class Declaration {
 	}
 
 
-  public function cookiesByClass($cookies) {
+  public function cookiesByClass() {
+
+    $header = '<thead><tr>';
+    $header .= '<th>' . $this->category->name . '</th>';
+    $header .= '<th>' . $this->category->provider . '</th>';
+    $header .= '<th>' . $this->category->purpose . '</th>';
+    $header .= '<th>' . $this->category->expiry . '</th>';
+    $header .= '<th>' . $this->category->type . '</th>';
+    $header .= '</tr></thead>';
 
     $classes = [
-      "essential" => "",
-      "functional" => "",
-      "analytical" => "",
-      "3rd-party" => ""
+      "essential" => "<table>$header",
+      "functional" => "<table>$header",
+      "analytical" => "<table>$header",
+      "3rd-party" => "<table>$header"
     ];
 
-    foreach ( $cookies as $cookie ) {
+    foreach ( $this->cookies as $cookie ) {
 
       if ( $cookie->class === "essential" ) {
-        $classes[ "essential" ] .= $cookie->name . "\n";
+
+        $classes[ "essential" ] .= $this->cookieTableRow($cookie);
       }
+
       if ( $cookie->class === "functional" ) {
-        $classes[ "functional" ] .= $cookie->name . "\n";
+
+        $classes[ "functional" ] .= $this->cookieTableRow($cookie);
       }
+
       if ( $cookie->class === "analytical" ) {
-        $classes[ "analytical" ] .= $cookie->name . "\n";
+
+        $classes[ "analytical" ] .= $this->cookieTableRow($cookie);
       }
+
       if ( $cookie->class === "3rd-party" ) {
-        $classes[ "3rd-party" ] .= $cookie->name . "\n";
+
+        $classes[ "3rd-party" ] .= $this->cookieTableRow($cookie);
       }
     }
+    $classes[ "essential" ] .= '</table>';
+    $classes[ "functional" ] .= '</table>';
+    $classes[ "analytical" ] .= '</table>';
+    $classes[ "3rd-party" ] .= '</table>';
+
     return $classes;
   }
 
+  private function cookieTableRow($cookie) {
+
+    $html = '<tr>';
+    $html .= '<td data-header="'. $this->category->name .'">' . $cookie->name . '</td>';
+    $html .= '<td data-header="'. $this->category->provider .'">' . $cookie->provider . '</td>';
+    $html .= '<td data-header="'. $this->category->purpose .'">' . $cookie->purpose . '</td>';
+    $html .= '<td data-header="'. $this->category->expiry .'">' . $cookie->expiry . '</td>';
+    $html .= '<td data-header="'. $this->category->type .'">' . $cookie->type . '</td>';
+    $html .= '<tr>';
+
+    return $html;
+  }
 }	
